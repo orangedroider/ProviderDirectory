@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
+/* Alabama Styles */
+html, body
+{ 
+    height: 100vw; 
+    width: 100vw;
+    margin: 0;
+    padding: 0;  
+   background-color:  #0c4481 ;
+
+  /* background: url(\background_blue8.jpg) #0c4481 repeat-x;*/
+} 
+
+* Forms */
+
+[type="text"],
+[type="email"],
+[type="url"],
+[type="search"],
+select,
+textarea {
+  display: block;
+  padding: 0.5rem; 
+
+  font-size: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  border: solid #cdcdcd;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+[type="text"]:focus,
+[type="email"]:focus,
+[type="url"]:focus,
+select:focus,
+
+textarea:focus {
+	appearance: none;
+  outline: none;
+  border: solid #1e6bd6;
+  background: white;
+  font-size: 1.5rem;
+}
+
+textarea {
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 1 */
+    line-height: 1.15; /* 1 */
+    margin:0; /* 2 */
+   
+  }
+
+#AL_Container
+{
+    height: 100%;
+    max-width: 990px;
+    min-width: 766px;
+    _width: 990px; /* IE Hack */
+    margin: 0 auto;
+    padding-left: 1rem;
+    
+}
+
+#AL_Header
+{
+    width: 100%;
+}
+
+#AL_User
+{
+    float: right;
+    margin-top: 8px;
+    height: 20px; 
+    font-weight: bold;
+    color: #0c4481;
+}
+
+#AL_Date
+{
+    clear: right;
+    float: right;
+    margin-top: 36px;
+}
+
+
+.AL_BannerDate
+{
+    font-weight: bold;
+	font-size: 70%;
+    color: #0c4481;
+}
+
+#AL_Logo
+{
+    height: 88px;
+    max-height: 88px;
+}
+
+#AL_Logo img
+{
+    padding-top: 8px;
+}
+
+#AL_Menu
+{
+    width: 100%;
+    height: 58px;
+    background-color: #fff;
+    border-left: 1px solid #666;
+    border-right: 1px solid #666;
+    border-top: 1px solid #666;
+}
+
+.AL_MenuShadow
+{
+   /* background: url(../public/images/med-header-shadow.gif) #fff repeat-x top;*/
+    
+    clear: both;
+    height: 8px;
+    width: 100%;
+}
+
+#AL_Content
+{
+    background-color: #fff;
+    width: 100%;
+    min-height: 100%;
+    _height: 100%; /* IE Hack */
+    border-left: 1px solid #666;
+    border-right: 1px solid #666;
+}
+
+.AL_ub92_links
+{
+    text-align: center; 
+    padding: 4px 0 4px 0; 
+    margin: 4px; 
+    border: 3px double #00009c; 
+    font-weight: bold; 
+    font-size:80%; 
+    background-color: #c6dbff
+}
+
+.AL_ub92_links p
+{
+    font-size: 90%; 
+    font-weight: normal; 
+    margin: 0; 
+    padding: 0 0 4px 0;
+}
+
+/* Override Styles */
+#dnn_ContentPane
+{
+    width: 97%;
+    margin: 0 auto;
+}
+
+
+
+.SubSystemMenuNav
+{
+   /* background: url(../public/images/med-header-blue.gif) #0e79fe repeat-x bottom;*/
+
+    border-bottom: 1px solid #666;
+}
+
+/* Print Styles */
+#iC_PrintHeader
+{
+    visibility: hidden;
+    display:none;
+}
+
+@media print {
+
+    #iC_PrintHeader
+    {
+        visibility: visible;
+        display:block;
+    }
+
+}
+
+/* The margin-bottom is used to set the amount of whitespace between controls. */
+.iC_DataPanelContainer
+{
+	width: 100%;
+	color: inherit;
+	background-color: #c5d9fa;
+	margin-bottom: .5em;
+}
+
+.iC_DataPanelContainer td.border-top-right
+{
+	background-image: url(./images/top-left-transparent.png);
+	color: inherit;
+	background-color: #000099;
+	background-position: right top;
+	background-repeat: no-repeat;
+	vertical-align: top;
+}
+
+.iC_DataPanelContainer td.border-top-left
+{
+	background-image: url(./images/top-left-transparent.png);
+	color: white;
+	background-color: #000099;
+	background-position: left top;
+	background-repeat: no-repeat;
+	padding-left: 8px;
+}
+
+.iC_DataPanelContainer td.border-top-middle
+{
+	color: white;
+	background-color: #000099;
+	width: 95%;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 80%;
+	font-weight: bold;
+}
+
+/* *********************************************** */
+/* Defaults for the heading row on the data list   */
+/* *********************************************** */
+.iC_DataPanelTitle td
+{
+	color: inherit;
+	background-color: #000099;
+}
+
+.iC_DataPanelTitle td.Left
+{
+	background-image: url(./images/top-left-transparent.png);
+	background-repeat: no-repeat;
+	background-position: left bottom;
+}
+
+.iC_DataPanelTitle td.Right
+{
+	background-image: url(./images/top-left-transparent.png);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+
+.iC_DataPanelTitle td.Middle
+{
+	color: white;
+	background-color: inherit;
+	font-weight: bold;
+	width: 100%;
+	text-align: center;
+}
+
+.HeaderTitleText
+{
+    color:#1e6bd6;
+    margin :0rem 10rem 5rem 1rem;
+    padding-top: 1rem;
+    font-size: 3rem;
+}
+
+.StaticTextPara{
+    font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+      font-size: 1rem;
+      line-height: 1;
+      padding: 0rem 2rem;
+      margin-left: 1px;
+      margin-right: 1px;
+      text-decoration: none;
+      width: 100%;
+  }
+  
+  .titleText {
+    float: left;
+    color: #fff;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 20px;
+    margin-top: 0;
+    margin-bottom: 2px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  
+  .contentBody {
+    padding: 2px 2px 2px;
+  }
+  .contentField {
+    margin-top: 0;
+    margin-left: 10px;
+    margin-bottom: 0;
+  }
+  
+  .contentField:after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+  
+  .contentFieldLabel {
+    float: left;
+    width: 100%;
+    font-weight: 700;
+    line-height: 10px;
+    padding-top: 1px;
+    padding-bottom: 2px;
+    padding-right: 8px;
+  }
+  
+  .contentFieldControl {
+    padding-right: 36px;
+    position: relative;
+    float: left;
+    width: 100%;
+  }
+  
+  .contentFieldControl input,
+  .contentFieldControl select {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .contentFieldControl .helpIcon {
+    position: absolute;
+    top: 8px;
+    right: 0;
+  }
