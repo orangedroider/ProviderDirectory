@@ -1,124 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
-/* Alabama Styles */
 html, body
 { 
-    height: 100vw; 
-    width: 100vw;
+    height: 100%; 
+    width: 100%; 
     margin: 0;
     padding: 0;  
    background-color:  #0c4481 ;
 
   /* background: url(\background_blue8.jpg) #0c4481 repeat-x;*/
 } 
-
-* Forms */
-
-[type="text"],
-[type="email"],
-[type="url"],
-[type="search"],
-select,
-textarea {
-  display: block;
-  padding: 0.5rem; 
-
-  font-size: 1.5rem;
-  width: 100%;
-  max-width: 100%;
-  border: solid #cdcdcd;
-  border-radius: 4px;
-  text-transform: uppercase;
-}
-
-[type="text"]:focus,
-[type="email"]:focus,
-[type="url"]:focus,
-select:focus,
-
-textarea:focus {
-	appearance: none;
-  outline: none;
-  border: solid #1e6bd6;
-  background: white;
-  font-size: 1.5rem;
-}
-
-textarea {
-    font-family: inherit; /* 1 */
-    font-size: 100%; /* 1 */
-    line-height: 1.15; /* 1 */
-    margin:0; /* 2 */
-   
-  }
-
-#AL_Container
+  
+  #AL_Container
 {
     height: 100%;
     max-width: 990px;
     min-width: 766px;
     _width: 990px; /* IE Hack */
     margin: 0 auto;
-    padding-left: 1rem;
-    
-}
-
-#AL_Header
-{
-    width: 100%;
-}
-
-#AL_User
-{
-    float: right;
-    margin-top: 8px;
-    height: 20px; 
-    font-weight: bold;
-    color: #0c4481;
-}
-
-#AL_Date
-{
-    clear: right;
-    float: right;
-    margin-top: 36px;
-}
-
-
-.AL_BannerDate
-{
-    font-weight: bold;
-	font-size: 70%;
-    color: #0c4481;
-}
-
-#AL_Logo
-{
-    height: 88px;
-    max-height: 88px;
-}
-
-#AL_Logo img
-{
-    padding-top: 8px;
-}
-
-#AL_Menu
-{
-    width: 100%;
-    height: 58px;
-    background-color: #fff;
-    border-left: 1px solid #666;
-    border-right: 1px solid #666;
-    border-top: 1px solid #666;
-}
-
-.AL_MenuShadow
-{
-   /* background: url(../public/images/med-header-shadow.gif) #fff repeat-x top;*/
-    
-    clear: both;
-    height: 8px;
-    width: 100%;
+    padding-left: 1rem;    
 }
 
 #AL_Content
@@ -130,148 +29,144 @@ textarea {
     border-left: 1px solid #666;
     border-right: 1px solid #666;
 }
-
-.AL_ub92_links
-{
-    text-align: center; 
-    padding: 4px 0 4px 0; 
-    margin: 4px; 
-    border: 3px double #00009c; 
-    font-weight: bold; 
-    font-size:80%; 
-    background-color: #c6dbff
-}
-
-.AL_ub92_links p
-{
-    font-size: 90%; 
-    font-weight: normal; 
-    margin: 0; 
-    padding: 0 0 4px 0;
-}
-
-/* Override Styles */
-#dnn_ContentPane
-{
-    width: 97%;
-    margin: 0 auto;
-}
-
-
-
-.SubSystemMenuNav
-{
-   /* background: url(../public/images/med-header-blue.gif) #0e79fe repeat-x bottom;*/
-
-    border-bottom: 1px solid #666;
-}
-
-/* Print Styles */
-#iC_PrintHeader
-{
-    visibility: hidden;
-    display:none;
-}
-
-@media print {
-
-    #iC_PrintHeader
-    {
-        visibility: visible;
-        display:block;
-    }
-
-}
-
-/* The margin-bottom is used to set the amount of whitespace between controls. */
-.iC_DataPanelContainer
-{
-	width: 100%;
-	color: inherit;
-	background-color: #c5d9fa;
-	margin-bottom: .5em;
-}
-
-.iC_DataPanelContainer td.border-top-right
-{
-	background-image: url(./images/top-left-transparent.png);
-	color: inherit;
-	background-color: #000099;
-	background-position: right top;
-	background-repeat: no-repeat;
-	vertical-align: top;
-}
-
-.iC_DataPanelContainer td.border-top-left
-{
-	background-image: url(./images/top-left-transparent.png);
-	color: white;
-	background-color: #000099;
-	background-position: left top;
-	background-repeat: no-repeat;
-	padding-left: 8px;
-}
-
-.iC_DataPanelContainer td.border-top-middle
-{
-	color: white;
-	background-color: #000099;
-	width: 95%;
-	font-family: verdana, arial, helvetica, sans-serif;
-	font-size: 80%;
-	font-weight: bold;
-}
-
-/* *********************************************** */
-/* Defaults for the heading row on the data list   */
-/* *********************************************** */
-.iC_DataPanelTitle td
-{
-	color: inherit;
-	background-color: #000099;
-}
-
-.iC_DataPanelTitle td.Left
-{
-	background-image: url(./images/top-left-transparent.png);
-	background-repeat: no-repeat;
-	background-position: left bottom;
-}
-
-.iC_DataPanelTitle td.Right
-{
-	background-image: url(./images/top-left-transparent.png);
-	background-repeat: no-repeat;
-	background-position: right bottom;
-}
-
-.iC_DataPanelTitle td.Middle
-{
-	color: white;
-	background-color: inherit;
-	font-weight: bold;
-	width: 100%;
-	text-align: center;
-}
-
-.HeaderTitleText
-{
-    color:#1e6bd6;
-    margin :0rem 10rem 5rem 1rem;
-    padding-top: 1rem;
-    font-size: 3rem;
-}
-
-.StaticTextPara{
-    font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
-      font-size: 1rem;
-      line-height: 1;
-      padding: 0rem 2rem;
-      margin-left: 1px;
-      margin-right: 1px;
-      text-decoration: none;
-      width: 100%;
+  /* Forms */
+  
+  [type="text"],
+  [type="email"],
+  [type="url"],
+  [type="search"],
+  select,
+  textarea {
+    display: block;
+    padding: 0.5rem;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 100%;
+    border: solid #cdcdcd;
+    border-radius: 4px;
+    text-transform: uppercase;
   }
+  
+  [type="text"]:focus,
+  [type="email"]:focus,
+  [type="url"]:focus,
+  select:focus,
+  
+  textarea:focus {
+      appearance: none;
+    outline: none;
+    border: solid #1e6bd6;
+    background: white;
+    font-size: 1rem;
+  }
+  
+  h1
+  {
+    font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+    color:#1e6bd6;
+    margin :0rem 0rem 1rem 1rem;
+    padding-top: 2rem;
+    padding-bottom: 0.5rem;
+    font-size: 3rem;
+  }
+  
+  select {
+      appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      appearance: none;
+      background-color: #ffffff;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9.93 13.66'%3E%3Ctitle%3ESort%3C/title%3E%3Cg id='Layer_2' data-name='Layer 2'%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpath d='M.62,5.59H9.31a.62.62,0,0,0,.44-1.06L5.4.18a.61.61,0,0,0-.87,0L.18,4.53a.61.61,0,0,0,0,.87A.6.6,0,0,0,.62,5.59Z' fill='%23323a44' fill-rule='evenodd'/%3E%3Cpath d='M9.31,8.07H.62a.6.6,0,0,0-.44.18.61.61,0,0,0,0,.87l4.35,4.35a.61.61,0,0,0,.87,0L9.75,9.13a.62.62,0,0,0-.44-1.06Z' fill='%23323a44' fill-rule='evenodd'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background-position: right 1.3rem center;
+      background-repeat: no-repeat;
+      /*background-size: 1rem;*/
+      background-size: 1.2rem 1.2rem;
+    }
+  
+  label {
+    font-weight: 600;
+    font-size: 1rem;
+    display: block;
+    margin: 0.5rem 0 ;    
+    padding: 0.5rem;    
+  }
+  
+  /* Other */
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    -webkit-font-smoothing: antialiased;
+    padding: 1rem;
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: 0px auto;
+    margin-top:0px;
+    padding-top: 0px;
+    padding: 0 2rem;
+    background-color:#f1f1f1;
+    line-height: 14px;
+  }
+  
+  .searchContainer {
+    background-color:#f1f1f1;
+    line-height: 14px;
+    margin-top:0px;
+    padding-top: 0px;
+  }
+  
+  
+  /* Button */
+  
+  [type="submit"] {
+    display: inline-block;
+    vertical-align: middle;
+    white-space: nowrap;
+    cursor: pointer;
+    margin: 0.25rem 0 0 0.5rem;  
+    padding: 0.5rem 1rem;
+    border: 1px solid #1e6bd6;
+    border-radius: 18px;
+    background: #1e6bd6;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 1rem;
+  }
+  
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 1 */
+    line-height: 1; /* 1 */
+    margin:0; /* 2 */
+   
+  }
+  
+  .titleBar {
+    background-color: #003366;
+    border-bottom: #336699 6px solid;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .titleBar:after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+  
   
   .titleText {
     float: left;
@@ -285,9 +180,27 @@ textarea {
     padding-bottom: 4px;
   }
   
+  .titleText em {
+    font-weight: normal;
+  }
   .contentBody {
     padding: 2px 2px 2px;
   }
+  .contentBody {
+    padding: 2px 2px 2px;
+  }
+  
+  @media screen and (min-width: 481px) {
+    .contentBody {
+      padding: 1px 1px 2px;
+    }
+  }
+  
+  .contentCollapse {
+    display: none;
+    border-bottom: 1px solid #ff903d;
+  }
+  
   .contentField {
     margin-top: 0;
     margin-left: 10px;
@@ -326,4 +239,87 @@ textarea {
     position: absolute;
     top: 8px;
     right: 0;
+  }
+  
+  @media screen and (min-width: 481px) {
+    .contentFieldControl {
+      float: left;
+      width: 75%;
+    }
+  
+    .contentFieldLabel {
+      width: 25%;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+  }
+  
+  .contentFieldLabelAuto {
+    width: auto;
+    margin-right: 16px;
+  }
+  
+  /* 612px x 792px is our default size of a PDF */
+  .pdf {
+    width: 612px;
+    height: 792px;
+    background-color: white;
+    margin: 0 auto;
+  }
+  
+  .btnContainer {
+      padding-top: 20px;
+      margin-left: 32px;
+      margin-right: 32px;
+      padding-bottom: 15px;
+    text-align: right;
+    font-size: 0.5rem;
+  }
+  
+  .btnContainer .btn {
+      width: auto;
+      margin-top: 0;
+  
+  }
+  
+  .StaticTextPara{
+    font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+      font-size: 1rem;
+      line-height: 1;
+      padding: 0rem 2rem;
+      margin-left: 0px;
+      text-decoration: none;
+      width: 100%;
+  }
+  
+  .ErrorMessage
+  {
+    font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+    color:red;
+      font-size: 1.7rem;
+      line-height: 1;
+      padding: 0rem 2rem;
+      margin-left: 0px;
+      text-decoration: none;
+      width: 100%;
+  }
+  
+  .ReactTable .rt-thead .rt-th.-sort-asc,
+  .ReactTable .rt-thead .rt-td.-sort-asc {
+      box-shadow: inset 0 0px 0 0 rgba(0, 0, 0, 0.6)
+  }
+  
+  .ReactTable .rt-thead .rt-th.-sort-desc,
+  .ReactTable .rt-thead .rt-td.-sort-desc {
+      box-shadow: inset 0 0px 0 0 rgba(0, 0, 0, 0.6)
+  }
+  
+  div.-sort-desc::after {
+      content: " \25BC";
+      float: right;
+  }
+  
+  div.-sort-asc::after {
+      content: " \25B2";
+      float: right;
   }
