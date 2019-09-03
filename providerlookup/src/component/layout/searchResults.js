@@ -15,12 +15,13 @@ function SearchResults(props) {
   const TheadComponent = props => null;
   const columns = [
     {
-      Header: "Provider",      
-      accessor: "",
+      Header: "Provider",
+      //headerClassName: "reactTableHeader",
+     
       fixed: "left",
-      Width: 100,
+      Width: '100',
       minwidth: "100px",
-      style: { "white-space": "unset" },
+      
       Cell: row => {
         return (
           <span>
@@ -63,11 +64,12 @@ function SearchResults(props) {
     },
     {
       Header: "Information",
+      //headerClassName: "reactTableHeader",
       accessor: "",
-      Width: 100,
+      Width: '100',
       fixed: "left",
       minwidth: "100px",
-      style: { "white-space": "unset" },
+      
       //style: { whiteSpace: "pre" }, '/n in criteria class
       Cell: row => {
         return (
@@ -106,11 +108,12 @@ function SearchResults(props) {
     },
     {
       Header: "DHCP/PCP",
+      //headerClassName: "reactTableHeader",
       accessor: "",
-      Width: 100,
-      fixed: "left",
+      Width: '100',
+      fixed: "right",
       minwidth: "100px",
-      style: { "white-space": "unset" },
+      
       Cell: row => {
         return (
           <span>
@@ -146,9 +149,11 @@ function SearchResults(props) {
 
         columns={columns}
         minRows={0}
-        defaultPageSize={defaultPageSize}
-        pageSizeOptions={[10, 20]}
-        style={{ overflow: "wrap" }}
+       
+        showPagination ={false} 
+      defaultPageSize={defaultPageSize}
+       pageSizeOptions={[10, 20,50, 100]}
+        
       />
     </div>
   );

@@ -83,7 +83,7 @@ function SearchCritirea() {
     SetVisibleSearchResult(false);
     setProviderDisplay(initialSearchValue);
     let url =
-      "http://localhost/Alportal/webservices/provider/ProviderDirectoryLocation.svc/ProviderDirectorySearch?";
+      "http://mod.alxix.slg.eds.com/AlportalaLT/webservices/provider/ProviderDirectoryLocation.svc/ProviderDirectorySearch?";
     url = url + "provider=" + providerName;
     console.log(specialtySelected);
     if (specialtySelected === "0") {
@@ -117,7 +117,7 @@ function SearchCritirea() {
   const fetchInitialData = async () => {
     try {
       const result = await axios(
-        "http://localhost/Alportal/webservices/provider/ProviderDirectoryLocation.svc/GetInitialData"
+        "https://mod.alxix.slg.eds.com/AlportalaLT/webservices/provider/ProviderDirectoryLocation.svc/GetInitialData"
       );
       setAllSpecialtys(result.data.SpecialityList);
       setAllCounty(result.data.CountyList);
@@ -135,6 +135,10 @@ function SearchCritirea() {
     setCity("");
     setErrorMessage("");
     SetVisibleSearchResult(false);
+    event.preventDefault();
+  };
+
+  const onPrintToPdf = event => {
     event.preventDefault();
   };
 
@@ -171,7 +175,7 @@ function SearchCritirea() {
       <TextBoxControl
         id="ct1"
         labelText="City: "
-        placeHolder="Enter Citi Name"
+        placeHolder="Enter City Name"
         Value={city}
         onChange={onCityChange}
       />
@@ -195,6 +199,14 @@ function SearchCritirea() {
         >
           {" "}
           Reset{" "}
+        </button>
+        <button
+          type="Submit"
+          name="btnSearch"
+          id="btnSearch"
+          onClick={onPrintToPdf}
+        >
+          Print To Pdf
         </button>
       </div>
       <div>
