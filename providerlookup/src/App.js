@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React from "react";
 import SearchCriteria from "./component/layout/searchCriteria"
 
 //import './App.scss';

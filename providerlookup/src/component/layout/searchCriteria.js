@@ -5,6 +5,7 @@ import TextBoxControl from "../controls/textBoxControl";
 import DropDownSelector from "../controls/dropDownSelector";
 import SearchResults from "./searchResults";
 import Header from "./header";
+import ReactToPrint from "react-to-print";
 
 function SearchCritirea() {
   const [providerName, setProviderName] = useState("BACHA");
@@ -83,7 +84,7 @@ function SearchCritirea() {
     SetVisibleSearchResult(false);
     setProviderDisplay(initialSearchValue);
     let url =
-      "http://mod.alxix.slg.eds.com/AlportalaLT/webservices/provider/ProviderDirectoryLocation.svc/ProviderDirectorySearch?";
+      "http://localhost/Alportal/webservices/provider/ProviderDirectoryLocation.svc/ProviderDirectorySearch?";
     url = url + "provider=" + providerName;
     console.log(specialtySelected);
     if (specialtySelected === "0") {
@@ -105,6 +106,7 @@ function SearchCritirea() {
       if (result.data.length !== 0) {
         SetVisibleSearchResult(true);
       } else {
+        setErrorMessage("No Matching Records Found.");
         SetVisibleSearchResult(false);
       }
 
@@ -114,16 +116,20 @@ function SearchCritirea() {
     }
   };
 
+  //https://mod.alxix.slg.eds.com/AlportalaLT/webservices/provider/ProviderDirectoryLocation.svc/GetInitialData
+  //"http://localhost/Alportal/webservices/provider/ProviderDirectoryLocation.svc/GetInitialData"
+
   const fetchInitialData = async () => {
     try {
       const result = await axios(
-        "https://mod.alxix.slg.eds.com/AlportalaLT/webservices/provider/ProviderDirectoryLocation.svc/GetInitialData"
+        "http://localhost/Alportal/webservices/provider/ProviderDirectoryLocation.svc/GetInitialData"
       );
+      console.log(result);
       setAllSpecialtys(result.data.SpecialityList);
       setAllCounty(result.data.CountyList);
     } catch (error) {
       setErrorMessage(
-        "Error in Loading Specialty, County Information, Please contact Technical."
+        "Error in Loading Specialty, County Information, Please contact Technical Support Team."
       );
     }
   };
@@ -138,9 +144,18 @@ function SearchCritirea() {
     event.preventDefault();
   };
 
-  const onPrintToPdf = event => {
-    event.preventDefault();
-  };
+  const printOrder=event =>{
+
+    const printableElements = document.getElementById('print_to_pdf').innerHTML;
+    const orderHtmlPage = '<html><head><title></title></head><body>' + printableElements + '</body></html>';
+    const oldPage = document.body.innerHTML;
+    document.body.innerHTML = orderHtmlPage;
+    window.print();
+    document.body.innerHTML = oldPage
+   
+  }
+
+  const componentRef = useRef();
 
   return (
     <React.Fragment>
@@ -148,7 +163,7 @@ function SearchCritirea() {
         <div>
       {" "}
       <TitleBar
-        labelText=" Search(items with * are required)"
+        labelText=" Search(items with * are required)-----Test"
         className="titleText"
       />
       <TextBoxControl
@@ -199,28 +214,37 @@ function SearchCritirea() {
         >
           {" "}
           Reset{" "}
-        </button>
-        <button
-          type="Submit"
-          name="btnSearch"
-          id="btnSearch"
-          onClick={onPrintToPdf}
-        >
-          Print To Pdf
-        </button>
-      </div>
+        </button> 
+        {visibleSearchResult ?     
+      (<button type="Submit" onClick={printOrder} >Print pdf</button>):(<p></p>)}
+            </div>
       <div>
         {visibleSearchResult ? (
-          <div classname="pdf" id="print_to_pdf">
+          <div >
             <SearchResults
               providerDisplay={providerDisplay}
               defaultPageSize={10}
+              showPagination= {true}
+              headerClassName={"reactTableHeader"}
+              ref={componentRef}
+              spanClassName={"span_color_blue"}
             />{" "}
           </div>
         ) : (
           <p className="ErrorMessage">{errorMessage}</p>
         )}
         </div>
+
+        <div  style={{display:"none"}} id="print_to_pdf">
+        <SearchResults
+              providerDisplay={providerDisplay}
+              defaultPageSize={providerDisplay.length}
+              showPagination= {false}
+              headerClassName={"reactTableHeader"}
+              spanClassName={"none"}
+              ref={componentRef}
+            />
+      </div>
     </React.Fragment>
   );
 }
