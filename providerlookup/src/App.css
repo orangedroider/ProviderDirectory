@@ -129,7 +129,7 @@ html {
   color: white;
   font-weight: 600;
   text-decoration: none;
-  font-family: "Graphik Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   text-decoration: none;
   font-size: 1rem;
 }
@@ -263,17 +263,18 @@ textarea {
 }
 
 .StaticTextPara {
-  font-family: "Graphik Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1rem;
-  line-height: 1;
+  font-family: 'Montserrat', sans-serif;
+  /* font-size: 1em; */
+  /* line-height: 1.25; */
   padding: 0rem 2rem;
   margin-left: 0px;
   text-decoration: none;
   width: 100%;
+  letter-spacing: 1.5px;
 }
 
 .ErrorMessage {
-  font-family: "Graphik Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: red;
   font-size: 1rem;
   line-height: 1;
@@ -283,22 +284,51 @@ textarea {
   width: 100%;
 }
 
-.reactTableHeader {  
+.reactTableHeader {
   table-layout: fixed;
   font-weight: bold;
-  display:table-cell;
-  width:100px;
-  min-width:100px;
-  max-width:1000px;
-  vertical-align:top;
+  display: table-cell;
+  width: 100px;
+  min-width: 100px;
+  max-width: 1000px;
+  vertical-align: top;
   white-space: unset;
 }
 
-.ReactColumn
+.mainFont
 {
-  white-space: unset;
+  font-family: 'Montserrat', sans-serif;
 }
-.span_color_blue
+
+.reactTableCell
 {
-  color:blue;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+}
+.reactTableCell #provname{
+  
+  font-weight: bold;
+}
+.reactTableCell .bluebold
+ {
+  color: blue;
+  font-weight: bold;
+}
+
+.reactTableCellPrint
+{
+  font-size: 0.8rem;
+}
+
+#printme {
+  display: none;
+}
+@media print {
+  #printme {
+    display: block;
+  }
+}
+
+.reactTableCell span, .reactTableCell i {
+  font-size: .9em;
 }

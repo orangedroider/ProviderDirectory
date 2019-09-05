@@ -3,8 +3,8 @@ import React from 'react';
 function Header() {
     return (
         <React.Fragment>
-    <div>
-    <h1 className="HeaderTitleText">Find a Provider</h1>
+    <div className='mainFont'>
+    <h1>Find a Provider</h1>
       <p className="StaticTextPara">
         Have you had trouble finding a dentist for your child? Use this Dentist
         Locator to find a dentist in your community who sees children and

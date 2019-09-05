@@ -5,7 +5,7 @@ import TextBoxControl from "../controls/textBoxControl";
 import DropDownSelector from "../controls/dropDownSelector";
 import SearchResults from "./searchResults";
 import Header from "./header";
-import ReactToPrint from "react-to-print";
+import Select from "react-select";
 
 function SearchCritirea() {
   const [providerName, setProviderName] = useState("BACHA");
@@ -30,6 +30,8 @@ function SearchCritirea() {
   const [visibleSearchResult, SetVisibleSearchResult] = useState(false);
   const initialSearchValue = [{ provideName: " " }];
   const [providerDisplay, setProviderDisplay] = useState(initialSearchValue);
+  const [quicksearch, SetQuickSearch]=useState("");
+const[ select2, SetSelect2]=useState(undefined);
 
   useEffect(() => {
     fetchInitialData();
@@ -43,6 +45,10 @@ function SearchCritirea() {
   const onCityChange = event => {
     const value = event.target.value.toUpperCase();
     setCity(value);
+  };
+  const onQuickSearch = event => {
+    const value = event.target.value.toUpperCase();
+    SetQuickSearch(value);
   };
 
   const onSpecialtySelection = event => {
@@ -76,7 +82,7 @@ function SearchCritirea() {
     ) {
       setErrorMessage("Please Enter alteast one search Criteria.");
     } else {
-    fetchSearchData();
+      fetchSearchData();
     }
   };
 
@@ -144,60 +150,78 @@ function SearchCritirea() {
     event.preventDefault();
   };
 
-  const printOrder=event =>{
-
-    const printableElements = document.getElementById('print_to_pdf').innerHTML;
-    const orderHtmlPage = '<html><head><title></title></head><body>' + printableElements + '</body></html>';
+  const printOrder = event => {
+    const printableElements = document.getElementById("printme").innerHTML;
+    const orderHtmlPage =
+      "<html><head><title></title></head><body>" +
+      printableElements +
+      "</body></html>";
     const oldPage = document.body.innerHTML;
     document.body.innerHTML = orderHtmlPage;
     window.print();
-    document.body.innerHTML = oldPage
-   
-  }
+    document.body.innerHTML = oldPage;
+  };
 
   const componentRef = useRef();
 
   return (
     <React.Fragment>
-         {visibleSearchResult === false ? <Header /> : <p></p>}       
-        <div>
-      {" "}
-      <TitleBar
-        labelText=" Search(items with * are required)-----Test"
-        className="titleText"
-      />
-      <TextBoxControl
-        id="ct0"
-        placeHolder="Enter Provider Name"
-        labelText="Provider Name: "
-        Value={providerName}
-        onChange={onProvideChange}
-      />
-      <DropDownSelector
-        value={specialtySelected}
-        labelText="Specialty: "
-        defaultText="--- Select A Speciality ---"
-        options={allSpecialtys}
-        onChange={onSpecialtySelection}
-      />
-      <DropDownSelector
-        value={countySelected}
-        labelText="County: "
-        defaultText="--- Select A County ---"
-        options={allCounty}
-        onChange={onCountySelection}
-      />
-      <TextBoxControl
-        id="ct1"
-        labelText="City: "
-        placeHolder="Enter City Name"
-        Value={city}
-        onChange={onCityChange}
-      />
-      <TitleBar labelText="&nbsp;" className="titleText" />
+      {visibleSearchResult === false ? <Header /> : <p></p>}
+      <div className='mainFont'>
+        {" "}
+        <TitleBar
+          labelText=" Search(items with * are required)"
+          className="titleText"
+        />
+        <TextBoxControl
+          id="ct0"
+          placeHolder="Enter Provider Name"
+          labelText="Provider Name: "
+          Value={providerName}
+          onChange={onProvideChange}
+        />
+        <DropDownSelector
+          value={specialtySelected}
+          labelText="Specialty: "
+          defaultText="--- Select A Speciality ---"
+          options={allSpecialtys}
+          onChange={onSpecialtySelection}
+        />
+        <DropDownSelector
+          value={countySelected}
+          labelText="County: "
+          defaultText="--- Select A County ---"
+          options={allCounty}
+          onChange={onCountySelection}
+        />
+        <TextBoxControl
+          id="ct1"
+          labelText="City: "
+          placeHolder="Enter City Name"
+          Value={city}
+          onChange={onCityChange}
+        />
+        <TitleBar labelText="&nbsp;" className="titleText" />
       </div>
 
       <div className="btnContainer">
+
+      <Select
+          style={{ width: "50%", marginBottom: "20px" }}
+          onChange={entry => {
+            this.setState({ select2: entry });
+            this.onFilteredChangeCustom(
+              entry.map(o => {
+                return o.value;
+              }),
+              "provname"
+            );
+          }}
+          value={SetSelect2}
+          multi={true}
+        
+        />
+        
         <button
           type="Submit"
           name="btnSearch"
@@ -214,36 +238,39 @@ function SearchCritirea() {
         >
           {" "}
           Reset{" "}
-        </button> 
-        {visibleSearchResult ?     
-      (<button type="Submit" onClick={printOrder} >Print pdf</button>):(<p></p>)}
-            </div>
+        </button>
+        {visibleSearchResult ? (
+          <button type="Submit" onClick={printOrder}>
+            Print pdf
+          </button>
+        ) : (
+          <p></p>
+        )}
+      </div>
       <div>
         {visibleSearchResult ? (
-          <div >
+          <div>
             <SearchResults
               providerDisplay={providerDisplay}
               defaultPageSize={10}
-              showPagination= {true}
-              headerClassName={"reactTableHeader"}
+              showPagination={true}             
               ref={componentRef}
-              spanClassName={"span_color_blue"}
+              reactTableCell={"reactTableCell"}
             />{" "}
           </div>
         ) : (
           <p className="ErrorMessage">{errorMessage}</p>
         )}
-        </div>
+      </div>
 
-        <div  style={{display:"none"}} id="print_to_pdf">
+      <div  id="printme">
         <SearchResults
-              providerDisplay={providerDisplay}
-              defaultPageSize={providerDisplay.length}
-              showPagination= {false}
-              headerClassName={"reactTableHeader"}
-              spanClassName={"none"}
-              ref={componentRef}
-            />
+          providerDisplay={providerDisplay}
+          defaultPageSize={providerDisplay.length}
+          showPagination={false}  
+          ref={componentRef}
+          reactTableCell={"reactTableCellPrint"}
+        />
       </div>
     </React.Fragment>
   );

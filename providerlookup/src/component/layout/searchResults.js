@@ -2,18 +2,17 @@ import React from "react";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 //import "./ReactTable.css";
-import withFixedColumns from "react-table-hoc-fixed-columns";
-import "react-table-hoc-fixed-columns/lib/styles.css";
-
+// import withFixedColumns from "react-table-hoc-fixed-columns";
+// import "react-table-hoc-fixed-columns/lib/styles.css";
 //import "./App.css";
 
 function SearchResults(props) {
   const providerDisplay = props.providerDisplay;
   const defaultPageSize = props.defaultPageSize;
   const HeaderClassName = props.headerClassName;
-  const showPagination = props.showPagination;
-  const spanClassName = props.spanClassName;
-  const ReactTableFixedColumns = withFixedColumns(ReactTable);
+  const showPagination = props.showPagination; 
+  const reactTableCell = props.reactTableCell;
+  // const ReactTableFixedColumns = withFixedColumns(ReactTable);
   //alert(spanClassName);
   //console.log(providerDisplay);
   //prov_addr_email
@@ -23,64 +22,57 @@ function SearchResults(props) {
   const columns = [
     {
       Header: "Provider",
-      HeaderClassName: { HeaderClassName },
+      // HeaderStyle: {fontweight:'bold'},
+ 
       fixed: "left",
-      /* className: "sticky",
-      headerClassName: "sticky",*/
       style: { "white-space": "unset" },
-      className:"ReactColumn",
       Cell: row => {
         return (
-          <span>
-           <span> <b>{row.original.prov_name}</b></span>
+          <div className={reactTableCell}>
+            <span id="provname">{row.original.prov_name}</span>
             <br />
             {row.original.prov_addr_str1}
             <br />
-            <b>{row.original.prov_addr_mail_city}, </b>
-            {row.original.prov_addr_mail_state} {row.original.prov_addr_zip}{" "}
+            {row.original.prov_addr_mail_city},
+            {row.original.prov_addr_mail_state} {row.original.prov_addr_zip}
             <br />
-            <span className={spanClassName}>
-              <b>County:</b>
+            <span class="bluebold">County : </span>
+            <span>
+              {" "}
+              <i>{row.original.prov_county}</i>
+              <br />
             </span>
-            <i>{row.original.prov_county}</i>
-            <span style={{ color: "blue" }}>
-              <b> Phone:</b>
-            </span>         
-              <a href={row.original.prov_phone}>{row.original.prov_phone}</a>
+            <span class="bluebold">Phone : </span>
+            <a href="#">{row.original.prov_phone}</a>
             <br />
-            <span style={{ color: "blue" }}>
-              <b>Email:</b>{row.original.prov_addr_email}</span>
-          </span>
+            <span class="bluebold">Email : {row.original.prov_addr_email}</span>
+          </div>
         );
       }
     },
     {
       Header: "Information",
-      // HeaderClassName: headerClassName,
       accessor: "",
-      /*    className: "sticky",
-              headerClassName: "sticky",*/
+      fixed: "left",
       style: { "white-space": "unset" },
-      //style: { whiteSpace: "pre" }, '/n in criteria class
-      Cell: row => {
+      Cell: pivot => {
         return (
-          <span>
-            <span style={{ color: "blue" }}>
-              <b>Speciality:</b></span>
-            {row.original.prov_specicialty} 
+          <div className={reactTableCell}>
+             <span class="bluebold">Speciality:</span>
+            {pivot.original.prov_specicialty}
             <br />
-            <span style={{ color: "blue" }}>
-              <b>Linguistic capabilities:</b>
-            {row.original.prov_lang_capabilities}</span>
-            <br />           
-              <span style={{ color: "blue" }}>
-                <b>Accepting new Patients: </b> </span>              
-              {row.original.prov_new_patient === "" ? (
-                <span>Unknown</span>
-              ) : (
-                <span>Test</span>
-              )}   
-          </span>
+            <span class="bluebold">
+              Linguistic capabilities:
+              {pivot.original.prov_lang_capabilities}
+            </span>
+            <br />
+            <span class="bluebold">Accepting new Patients: </span>
+            {pivot.original.prov_new_patient === "" ? (
+              <span>Unknown</span>
+            ) : (
+              <span>Test</span>
+            )}
+          </div>
         );
       }
     },
@@ -88,21 +80,18 @@ function SearchResults(props) {
       Header: "DHCP/PCP",
       //headerClassName: "reactTableHeader",
       accessor: "",
-      Fixed: "right",
-      /*  className: "sticky",
-    headerClassName: "sticky",*/
+      fixed: "right",
+      className: "ReactColumn",
       style: { "white-space": "unset" },
       Cell: row => {
         return (
-          <span>
-            <span style={{ color: "blue" }}>
-              <b>DHCP:</b></span>
-              {row.original.prov_dhcp}            
+          <div className={reactTableCell}>
+           <span class="bluebold">DHCP: </span>{" "}
+            {row.original.prov_dhcp}
             <br />
-            <span style={{ color: "blue" }}>
-              <b>PCP:</b> </span>
-              {row.original.prov_pcp}           
-          </span>
+            <span class="bluebold">PCP: </span>{" "}
+            {row.original.prov_pcp}
+          </div>
         );
       }
     }
@@ -110,7 +99,7 @@ function SearchResults(props) {
 
   return (
     <div>
-      <ReactTableFixedColumns
+      <ReactTable
         data={providerDisplay}
         //TheadComponent={TheadComponent}
         //headerClassName={headerClassName}
