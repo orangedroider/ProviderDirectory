@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TitleBar from "../controls/titlebar";
 import TextBoxControl from "../controls/textBoxControl";
 import DropDownSelector from "../controls/dropDownSelector";
+import CheckBoxControl from "../controls/checkBoxControl";
 import SearchResults from "./searchResults";
+import { Document, Page } from "react-pdf";
 import Header from "./header";
-import Select from "react-select";
 
 function SearchCritirea() {
   const [providerName, setProviderName] = useState("BACHA");
@@ -30,8 +31,16 @@ function SearchCritirea() {
   const [visibleSearchResult, SetVisibleSearchResult] = useState(false);
   const initialSearchValue = [{ provideName: " " }];
   const [providerDisplay, setProviderDisplay] = useState(initialSearchValue);
-  const [quicksearch, SetQuickSearch]=useState("");
-const[ select2, SetSelect2]=useState(undefined);
+  const [searchDataLength, SetSearchDataLength] = useState("2");
+  const LanguageSupported = [
+    { id: 1, value: "English", name: "English", checked: true },
+    { id: 2, value: "Spanish", name: "Spanish", checked: false },
+    { id: 3, value: "French", name: "French", checked: false },
+    { id: 4, value: "Arabic", name: "Arabic", checked: false }
+  ];
+  const [languages, Setlanguages] = useState(LanguageSupported);
+
+  const [selectedLanguages, SetSelectedLanguages] = useState("");
 
   useEffect(() => {
     fetchInitialData();
@@ -45,10 +54,6 @@ const[ select2, SetSelect2]=useState(undefined);
   const onCityChange = event => {
     const value = event.target.value.toUpperCase();
     setCity(value);
-  };
-  const onQuickSearch = event => {
-    const value = event.target.value.toUpperCase();
-    SetQuickSearch(value);
   };
 
   const onSpecialtySelection = event => {
@@ -86,7 +91,26 @@ const[ select2, SetSelect2]=useState(undefined);
     }
   };
 
+  // "http://localhost/Alportal/webservices/provider/ProviderDirectoryLocation.svc/ProviderDirectorySearch?";
+
   const fetchSearchData = async () => {
+    console.log(selectedLanguages.languages);
+    let lang = "";
+    selectedLanguages.languages.forEach(function(item) {
+      if (item.checked) {
+        console.log(item.value);
+        lang = lang + "~"+ item.value;
+      }
+      //SetSelectedLanguages(item.value+"~");
+      //console.log(item.checked);
+    });
+
+    // selectedLanguages.languages.items.forEach(function(item) {
+    //   console.log(item.checked);
+    // });
+
+    console.log(lang);
+
     SetVisibleSearchResult(false);
     setProviderDisplay(initialSearchValue);
     let url =
@@ -117,6 +141,8 @@ const[ select2, SetSelect2]=useState(undefined);
       }
 
       setProviderDisplay(result.data);
+      SetSearchDataLength(result.data.length);
+      console.log(searchDataLength);
     } catch (error) {
       setErrorMessage("Error Fetching data.");
     }
@@ -128,7 +154,7 @@ const[ select2, SetSelect2]=useState(undefined);
   const fetchInitialData = async () => {
     try {
       const result = await axios(
-        "http://localhost/Alportal/webservices/provider/ProviderDirectoryLocation.svc/GetInitialData"
+        "https://mod.alxix.slg.eds.com/AlportalaLT/webservices/provider/ProviderDirectoryLocation.svc/GetInitialData"
       );
       console.log(result);
       setAllSpecialtys(result.data.SpecialityList);
@@ -158,16 +184,29 @@ const[ select2, SetSelect2]=useState(undefined);
       "</body></html>";
     const oldPage = document.body.innerHTML;
     document.body.innerHTML = orderHtmlPage;
+    // window.setActive();
+
     window.print();
     document.body.innerHTML = oldPage;
   };
 
-  const componentRef = useRef();
+  const handleAllChecked = event => {
+    SetSelectedLanguages("");
+
+    LanguageSupported.forEach(language => {
+      if (language.value === event.target.value) {
+        console.log("target id :" + event.target.value);
+        language.checked = event.target.checked;
+        SetSelectedLanguages({ languages: LanguageSupported });
+        //  console.log(LanguageSupported);
+      }
+    });
+  };
 
   return (
     <React.Fragment>
       {visibleSearchResult === false ? <Header /> : <p></p>}
-      <div className='mainFont'>
+      <div className="mainFont">
         {" "}
         <TitleBar
           labelText=" Search(items with * are required)"
@@ -176,52 +215,45 @@ const[ select2, SetSelect2]=useState(undefined);
         <TextBoxControl
           id="ct0"
           placeHolder="Enter Provider Name"
-          labelText="Provider Name: "
+          labelText="Provider Name : "
           Value={providerName}
           onChange={onProvideChange}
         />
         <DropDownSelector
           value={specialtySelected}
-          labelText="Specialty: "
+          labelText="Specialty : "
           defaultText="--- Select A Speciality ---"
           options={allSpecialtys}
           onChange={onSpecialtySelection}
         />
         <DropDownSelector
           value={countySelected}
-          labelText="County: "
+          labelText="County : "
           defaultText="--- Select A County ---"
           options={allCounty}
           onChange={onCountySelection}
         />
         <TextBoxControl
           id="ct1"
-          labelText="City: "
+          labelText="City : "
           placeHolder="Enter City Name"
           Value={city}
           onChange={onCityChange}
         />
+        <div>
+          {languages.map(language => {
+            return (
+              <CheckBoxControl
+                {...language}
+                handleCheckChieldElement={handleAllChecked}
+              />
+            );
+          })}
+        </div>
         <TitleBar labelText="&nbsp;" className="titleText" />
       </div>
 
       <div className="btnContainer">
-
-      <Select
-          style={{ width: "50%", marginBottom: "20px" }}
-          onChange={entry => {
-            this.setState({ select2: entry });
-            this.onFilteredChangeCustom(
-              entry.map(o => {
-                return o.value;
-              }),
-              "provname"
-            );
-          }}
-          value={SetSelect2}
-          multi={true}
-        
-        />
-        
         <button
           type="Submit"
           name="btnSearch"
@@ -247,14 +279,14 @@ const[ select2, SetSelect2]=useState(undefined);
           <p></p>
         )}
       </div>
+      <Document file="some.pdf">fg</Document>
       <div>
         {visibleSearchResult ? (
           <div>
             <SearchResults
               providerDisplay={providerDisplay}
               defaultPageSize={10}
-              showPagination={true}             
-              ref={componentRef}
+              showPagination={true}
               reactTableCell={"reactTableCell"}
             />{" "}
           </div>
@@ -263,13 +295,12 @@ const[ select2, SetSelect2]=useState(undefined);
         )}
       </div>
 
-      <div  id="printme">
+      <div id="printme">
         <SearchResults
           providerDisplay={providerDisplay}
-          defaultPageSize={providerDisplay.length}
-          showPagination={false}  
-          ref={componentRef}
-          reactTableCell={"reactTableCellPrint"}
+          defaultPageSize={searchDataLength}
+          showPagination={false}
+          reactTableCell={"none"}
         />
       </div>
     </React.Fragment>

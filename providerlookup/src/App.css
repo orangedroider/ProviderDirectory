@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,700,900");
+
 html,
 body {
   height: 100%;
@@ -6,15 +6,13 @@ body {
   margin: 0;
   padding: 0;
   background-color: #1e6bd6;
-  font-family: "Graphik Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   /* background: url(\background_blue8.jpg) #0c4481 repeat-x;*/
 }
 
 #AL_Container {
   height: 100%;
   max-width: 990px;
-  min-width: 766px;
-  _width: 990px; /* IE Hack */
   margin: 0 auto;
   padding-left: 1rem;
 }
@@ -22,7 +20,7 @@ body {
 #AL_Content {
   background-color: #fff;
   width: 100%;
-  min-height: 100%;
+  /* min-height: 100%; */
   _height: 100%; /* IE Hack */
   border-left: 1px solid #666;
   border-right: 1px solid #666;
@@ -58,24 +56,15 @@ textarea:focus {
 }
 
 h1 {
-  font-family: "Graphik Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #1e6bd6;
   margin: 16px 0px;
   padding: 0px 32px;
   font-size: 3rem;
 }
-
-select {
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: #ffffff;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9.93 13.66'%3E%3Ctitle%3ESort%3C/title%3E%3Cg id='Layer_2' data-name='Layer 2'%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpath d='M.62,5.59H9.31a.62.62,0,0,0,.44-1.06L5.4.18a.61.61,0,0,0-.87,0L.18,4.53a.61.61,0,0,0,0,.87A.6.6,0,0,0,.62,5.59Z' fill='%23323a44' fill-rule='evenodd'/%3E%3Cpath d='M9.31,8.07H.62a.6.6,0,0,0-.44.18.61.61,0,0,0,0,.87l4.35,4.35a.61.61,0,0,0,.87,0L9.75,9.13a.62.62,0,0,0-.44-1.06Z' fill='%23323a44' fill-rule='evenodd'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  background-position: right 1.3rem center;
-  background-repeat: no-repeat;
-  /*background-size: 1rem;*/
-  background-size: 1.2rem 1.2rem;
+/*Below three lines gives the dropdown style for the select */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
 }
 
 label {
@@ -129,7 +118,7 @@ html {
   color: white;
   font-weight: 600;
   text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
+  
   text-decoration: none;
   font-size: 1rem;
 }
@@ -263,7 +252,7 @@ textarea {
 }
 
 .StaticTextPara {
-  font-family: 'Montserrat', sans-serif;
+ 
   /* font-size: 1em; */
   /* line-height: 1.25; */
   padding: 0rem 2rem;
@@ -274,7 +263,7 @@ textarea {
 }
 
 .ErrorMessage {
-  font-family: 'Montserrat', sans-serif;
+  
   color: red;
   font-size: 1rem;
   line-height: 1;
@@ -302,7 +291,7 @@ textarea {
 
 .reactTableCell
 {
-  font-family: 'Montserrat', sans-serif;
+ 
   font-size: 0.8rem;
 }
 .reactTableCell #provname{
@@ -327,8 +316,14 @@ textarea {
   #printme {
     display: block;
   }
+
+#printBtn {
+    visibility: hidden !important; /* To hide */
+}
+
 }
 
 .reactTableCell span, .reactTableCell i {
   font-size: .9em;
 }
+
