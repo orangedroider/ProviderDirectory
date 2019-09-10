@@ -10,7 +10,7 @@ function SearchResults(props) {
   const providerDisplay = props.providerDisplay;
   const defaultPageSize = props.defaultPageSize;
   const HeaderClassName = props.headerClassName;
-  const showPagination = props.showPagination; 
+  const showPagination = props.showPagination;
   const reactTableCell = props.reactTableCell;
   // const ReactTableFixedColumns = withFixedColumns(ReactTable);
   //alert(spanClassName);
@@ -23,7 +23,7 @@ function SearchResults(props) {
     {
       Header: "Provider",
       // HeaderStyle: {fontweight:'bold'},
- 
+
       fixed: "left",
       style: { "white-space": "unset" },
       Cell: row => {
@@ -55,23 +55,27 @@ function SearchResults(props) {
       accessor: "",
       fixed: "left",
       style: { "white-space": "unset" },
-      Cell: pivot => {
+      Cell: row => {
         return (
           <div className={reactTableCell}>
-             <span class="bluebold">Speciality:</span>
-            {pivot.original.prov_specicialty}
+            <span class="bluebold">Speciality:</span>
+            {row.original.prov_specicialty}
             <br />
             <span class="bluebold">
               Linguistic capabilities:
-              {pivot.original.prov_lang_capabilities}
+              {row.original.prov_lang_capabilities}
             </span>
             <br />
+
             <span class="bluebold">Accepting new Patients: </span>
-            {pivot.original.prov_new_patient === "" ? (
-              <span>Unknown</span>
-            ) : (
-              <span>Test</span>
-            )}
+            <span
+              style={{
+                color:
+                row.original.prov_new_patient === "Yes" ? "Green" : "Red"
+              }}
+            >
+              {row.original.prov_new_patient}
+            </span>
           </div>
         );
       }
@@ -86,11 +90,9 @@ function SearchResults(props) {
       Cell: row => {
         return (
           <div className={reactTableCell}>
-           <span class="bluebold">DHCP: </span>{" "}
-            {row.original.prov_dhcp}
+            <span class="bluebold">DHCP: </span> {row.original.prov_dhcp}
             <br />
-            <span class="bluebold">PCP: </span>{" "}
-            {row.original.prov_pcp}
+            <span class="bluebold">PCP: </span> {row.original.prov_pcp}
           </div>
         );
       }
